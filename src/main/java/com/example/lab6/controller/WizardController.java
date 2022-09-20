@@ -30,19 +30,17 @@ public class WizardController {
         Map<String, String> data = body.toSingleValueMap();
        Wizard n = wizardService.addWizard(
                 new Wizard(null, data.get("sex"), data.get("name"), data.get("school"), data.get("house"),
-                        Integer.parseInt(data.get("money")), data.get("position"))
+                        Double.parseDouble(data.get("money")), data.get("position"))
         );
         return ResponseEntity.ok(n);
     }
     @RequestMapping(value = "/updateWizard", method = RequestMethod.POST)
     public boolean updateWizard(@RequestBody MultiValueMap<String, String> body){
         Map<String, String> data = body.toSingleValueMap();
-        Wizard wizard = wizardService.retrieveWizardByName(data.get("name"));
+        Wizard wizard = new Wizard(data.get("id"), data.get("sex"), data.get("name"), data.get("school"), data.get("house"),
+                        Double.parseDouble(data.get("money")), data.get("position"));
         if(wizard != null){
-            wizardService.updateWizard(
-                    new Wizard(wizard.get_id(), data.get("sex"), data.get("name"), data.get("school"), data.get("house"),
-                            Integer.parseInt(data.get("money")), data.get("position"))
-            );
+            wizardService.updateWizard(wizard);
             return true;
         }else {
             return false;

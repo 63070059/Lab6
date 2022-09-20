@@ -1,9 +1,7 @@
 package com.example.lab6.pojo;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Data
 @Document("Wizard")
 public class Wizard {
     @Id
@@ -12,10 +10,12 @@ public class Wizard {
     private String name;
     private String school;
     private String house;
-    private int money;
+    private double money;
     private String position;
-    public Wizard(){};
-    public Wizard(String _id, String sex, String name, String school, String house, int money, String position){
+    public Wizard(){
+
+    }
+    public Wizard(String _id, String sex, String name, String school, String house, double money, String position){
         this._id = _id;
         this.sex = sex;
         this.name = name;
@@ -45,7 +45,7 @@ public class Wizard {
         this.house = house;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 
@@ -73,7 +73,7 @@ public class Wizard {
         return house;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
